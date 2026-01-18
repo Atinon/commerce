@@ -1,5 +1,15 @@
 {%extends "base.njk"%}
 
 {%block content%}
-<i> {{ message }} </i>
+<div>
+    <i> {{ message }} </i>
+</div>
+
+<div id="greet-island">
+
+</div>
+{%endblock%}
+
+{%block scripts%}
+<script type="module" src="{{ asset(CLIENT_ENTRIES.greetIsland) }}"></script>
 {%endblock%}
