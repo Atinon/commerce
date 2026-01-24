@@ -1,5 +1,5 @@
 import app from "./app.js";
-import { getEnv, configureNunjucks } from "./config/index.js";
+import { getEnv, configureNunjucks, configurePrisma } from "./config/index.js";
 import { ZodError } from "zod";
 
 async function startServer() {
@@ -10,10 +10,9 @@ async function startServer() {
     configureNunjucks(app, env);
     app.set("view engine", "njk");
 
-    // set up static files
+    await configurePrisma(env);
 
-    // any async setup here (DB, cache, etc.)
-    // await initializeDatabase(env.DB_URL);
+    // set up static files
 
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);

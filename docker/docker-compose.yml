@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    env_file:
+      - postgres.env
+    volumes:
+      - pgdata_dev:/var/lib/postgresql
+
+volumes:
+  pgdata_dev:

@@ -9,10 +9,10 @@ A reusable ecommerce app designed to demonstrate full-stack architecture, server
 - Express server with SSR using Nunjucks
 - Initial React widgets
 - Local development setup with TypeScript(tsx) and Vite
+- PostgreSQL + Prisma ORM
 
 ## Planned features
 
-- PostgreSQL + Prisma ORM
 - Product catalog with server-rendered pages
 - React-based product filters for dynamic listings without full page reload
 - Pagination and SEO-friendly URLs
