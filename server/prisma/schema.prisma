@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider   = "prisma-client-js"
   engineType = "client"
 }
 
@@ -8,7 +8,45 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Test {
-  id  Int    @id @default(autoincrement())
-  msg String
+// Users
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+
+  orders Order[]
+}
+
+// Product
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String
+  price     Int
+  stock     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  orderItems OrderItem[]
+}
+
+// Order
+model Order {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  createdAt DateTime @default(now())
+
+  user  User        @relation(fields: [userId], references: [id])
+  items OrderItem[]
+}
+
+// Order Item
+model OrderItem {
+  id        Int @id @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int
+
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([orderId, productId])
 }
