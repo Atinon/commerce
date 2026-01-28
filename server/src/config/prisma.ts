@@ -2,7 +2,12 @@ import type { Env } from "./env.js";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
 
-let prisma: PrismaClient | null = null;
+// Declared but initialized in configurePrisma(env)
+// Technically can be undefined,
+// but if not properly instantiated during server startup,
+// that's a serious issue itself.
+// Might rework later.
+export let prisma: PrismaClient;
 
 export async function configurePrisma(env: Env) {
   if (!prisma) {
@@ -12,11 +17,4 @@ export async function configurePrisma(env: Env) {
 
   // test reachability and open connection | TODO: ensure proper check
   await prisma.$connect();
-}
-
-export function getPrisma() {
-  if (!prisma) {
-    throw new Error("Prisma client not initialized.");
-  }
-  return prisma;
 }
