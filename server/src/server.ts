@@ -1,4 +1,4 @@
-import app from "./app.js";
+import createApp from "./app.js";
 import { getEnv, configureNunjucks, configurePrisma } from "./config/index.js";
 import { ZodError } from "zod";
 
@@ -6,6 +6,7 @@ async function startServer() {
   try {
     const env = getEnv();
     const PORT = env.PORT;
+    const app = createApp(env);
 
     configureNunjucks(app, env);
     app.set("view engine", "njk");

@@ -18,12 +18,14 @@
     "@prisma/client": "^6.19.2",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "nunjucks": "^3.2.4",
     "pg": "^8.17.2",
     "zod": "^4.3.5"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/express-session": "^1.18.2",
     "@types/node": "^25.0.9",
     "@types/nunjucks": "^3.2.6",
     "@types/pg": "^8.16.0",

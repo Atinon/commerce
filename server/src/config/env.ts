@@ -8,6 +8,7 @@ const envSchema = z.object({
   PORT: z.coerce.number().int().positive(),
   ASSETS_BASE_URL: z.string(),
   DATABASE_URL: z.url(),
+  SESSION_SECRET: z.string(),
 });
 
 export type Env = z.infer<typeof envSchema>;
