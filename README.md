@@ -10,6 +10,8 @@ A reusable ecommerce app designed to demonstrate full-stack architecture, server
 - Initial React widgets
 - Local development setup with TypeScript(tsx) and Vite
 - PostgreSQL + Prisma ORM
+- User authentication
+- Session management with express-session
 
 ## Planned features
 
