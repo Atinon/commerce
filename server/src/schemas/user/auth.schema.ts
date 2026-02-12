@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+export type UserRole = "USER" | "ADMIN";
+
 export const registerUserSchema = z
   .object({
     email: z.email(),

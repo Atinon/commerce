@@ -3,6 +3,7 @@ import { UnauthorizedError } from "../errors/errors.js";
 import type {
   RegisterUserInput,
   LoginUserInput,
+  UserRole,
 } from "../schemas/user/auth.schema.js";
 import {
   hashPassword,
@@ -11,13 +12,16 @@ import {
 } from "../utils/auth/password.js";
 import { getSingleUserService } from "./user.service.js";
 
-export async function registerUserService(data: RegisterUserInput) {
+export async function registerUserService(
+  data: RegisterUserInput,
+  role?: UserRole,
+) {
   const hashedPassword = await hashPassword(data.password);
   return prisma.user.create({
     data: {
       email: data.email,
       password: hashedPassword,
-      role: "USER", // default
+      role: role ?? "USER",
     },
   });
 }

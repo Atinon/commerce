@@ -12,6 +12,7 @@ A reusable ecommerce app designed to demonstrate full-stack architecture, server
 - PostgreSQL + Prisma ORM
 - User authentication
 - Session management with express-session
+- Initial Admin functionality
 
 ## Planned features
 
@@ -20,7 +21,6 @@ A reusable ecommerce app designed to demonstrate full-stack architecture, server
 - Pagination and SEO-friendly URLs
 - API layer to expose data to client-side components
 - Shopping cart integrated as a React widget
-- Authentication 
 - Docker-based production setup
 
 ## Purpose

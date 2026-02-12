@@ -7,12 +7,7 @@ import {
   loginUserService,
   registerUserService,
 } from "../services/auth.service.js";
-import { User } from "@prisma/client";
-
-function sanitizeUser(user: User) {
-  const { password, ...safeUser } = user;
-  return safeUser;
-}
+import { sanitizeUser } from "../utils/auth/generic.js";
 
 export async function registerUser(req: Request, res: Response) {
   const data = registerUserSchema.parse(req.body);
@@ -25,6 +20,7 @@ export async function loginUser(req: Request, res: Response) {
   const data = loginUserSchema.parse(req.body);
   const user = await loginUserService(data);
   req.session.userId = user.id;
+  req.session.userRole = user.role;
   const safeUser = sanitizeUser(user);
   res.status(200).json(safeUser);
 }
