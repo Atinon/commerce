@@ -1,10 +1,11 @@
 import { prisma } from "../config/index.js";
 import { UnauthorizedError } from "../errors/errors.js";
-import type {
-  RegisterUserInput,
-  LoginUserInput,
-  UserRole,
-} from "../schemas/user/auth.schema.js";
+import {
+  type RegisterUserInput,
+  type LoginUserInput,
+  type UserRole,
+  USER_ROLES,
+} from "../schemas/auth.schema.js";
 import {
   hashPassword,
   comparePassword,
@@ -21,7 +22,7 @@ export async function registerUserService(
     data: {
       email: data.email,
       password: hashedPassword,
-      role: role ?? "USER",
+      role: role ?? USER_ROLES.USER,
     },
   });
 }

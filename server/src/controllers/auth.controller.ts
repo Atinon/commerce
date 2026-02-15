@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import {
   loginUserSchema,
   registerUserSchema,
-} from "../schemas/user/auth.schema.js";
+} from "../schemas/auth.schema.js";
 import {
   loginUserService,
   registerUserService,

@@ -1,4 +1,5 @@
 import { prisma } from "../config/index.js";
+import { UserParamsSchema } from "../schemas/user.schema.js";
 
 type GetUsersOptions = {
   count: number;
@@ -14,6 +15,13 @@ export async function getUsersService(options: GetUsersOptions) {
 
 export async function getSingleUserService(params: GetSingleUserParams) {
   return prisma.user.findUnique({
+    where: params,
+  });
+}
+
+// Can change to soft delete if needed
+export async function deleteUserService(params: UserParamsSchema) {
+  return prisma.user.delete({
     where: params,
   });
 }

@@ -1,5 +1,5 @@
 import "express-session";
-import { UserRole } from "../schemas/user/auth.schema.ts";
+import { UserRole } from "../schemas/auth.schema.ts";
 
 declare module "express-session" {
   interface SessionData {
