@@ -1,5 +1,15 @@
 import { prisma } from "../config/index.js";
-import { UserParamsSchema } from "../schemas/user.schema.js";
+import {
+  BadRequestError,
+  NotFoundError,
+  UnauthorizedError,
+} from "../errors/errors.js";
+import {
+  ChangeAccountPasswordSchema,
+  EditUserSchema,
+  UserParamsSchema,
+} from "../schemas/user.schema.js";
+import { comparePassword, hashPassword } from "../utils/auth/password.js";
 
 type GetUsersOptions = {
   count: number;
@@ -23,5 +33,49 @@ export async function getSingleUserService(params: GetSingleUserParams) {
 export async function deleteUserService(params: UserParamsSchema) {
   return prisma.user.delete({
     where: params,
+  });
+}
+
+export async function editUserService(
+  params: UserParamsSchema,
+  data: EditUserSchema,
+) {
+  return prisma.user.update({
+    where: params,
+    data: data,
+  });
+}
+
+export async function changeAccountPasswordService(
+  params: UserParamsSchema,
+  data: ChangeAccountPasswordSchema,
+) {
+  const user = await prisma.user.findUnique({
+    where: params,
+    select: { password: true },
+  });
+
+  if (!user) throw new NotFoundError("User not found.");
+
+  const passwordMatch = await comparePassword(
+    data.currentPassword,
+    user.password,
+  );
+
+  if (!passwordMatch)
+    throw new UnauthorizedError("Current password is incorrect.");
+
+  const samePassword = await comparePassword(data.newPassword, user.password);
+
+  if (samePassword)
+    throw new BadRequestError(
+      "New password must be different from current password.",
+    );
+
+  const hashedPassword = await hashPassword(data.newPassword);
+
+  return prisma.user.update({
+    where: params,
+    data: { password: hashedPassword },
   });
 }
