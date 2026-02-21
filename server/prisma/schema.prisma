@@ -27,11 +27,12 @@ enum Role {
 
 // Product
 model Product {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   name      String
   price     Int
-  stock     Int      @default(0)
-  createdAt DateTime @default(now())
+  stock     Int       @default(0)
+  createdAt DateTime  @default(now())
+  deletedAt DateTime?
 
   orderItems OrderItem[]
 }
@@ -54,7 +55,7 @@ model OrderItem {
   quantity  Int
 
   order   Order   @relation(fields: [orderId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+  product Product @relation(fields: [productId], references: [id], onDelete: Restrict)
 
   @@unique([orderId, productId])
 }

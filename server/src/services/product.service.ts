@@ -4,6 +4,7 @@ import {
   ProductParamsSchema,
   UpdateProductInput,
 } from "../schemas/product.schema.js";
+import { assertActiveProduct } from "../utils/product/generic.js";
 
 interface GetProductsOptions {
   count: number;
@@ -11,6 +12,7 @@ interface GetProductsOptions {
 
 export async function getProductsService(options: GetProductsOptions) {
   return prisma.product.findMany({
+    where: { deletedAt: null },
     take: options.count,
   });
 }
@@ -23,6 +25,7 @@ export async function updateProductService(
   params: ProductParamsSchema,
   data: UpdateProductInput,
 ) {
+  await assertActiveProduct(params);
   return prisma.product.update({
     where: params,
     data: data,
@@ -30,7 +33,9 @@ export async function updateProductService(
 }
 
 export async function deleteProductService(params: ProductParamsSchema) {
-  return prisma.product.delete({
+  await assertActiveProduct(params);
+  return prisma.product.update({
     where: params,
+    data: { deletedAt: new Date() },
   });
 }
