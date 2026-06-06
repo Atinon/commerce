@@ -1,7 +1,10 @@
 import { z } from "zod";
 import dotenv from "dotenv";
 
-dotenv.config();
+export const ENV_PATH = {
+  development: ".env",
+  test: ".env.test",
+};
 
 const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
@@ -13,6 +16,11 @@ const envSchema = z.object({
 
 export type Env = z.infer<typeof envSchema>;
 
-export function getEnv(): Env {
+export function getEnv(path = ENV_PATH.development): Env {
+  dotenv.config({
+    path,
+    override: true,
+  });
+
   return envSchema.parse(process.env);
 }

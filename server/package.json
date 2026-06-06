@@ -7,7 +7,12 @@
     "dev": "npx tsx watch src/server.ts",
     "prisma:make-migrations": "npx prisma migrate dev --create-only",
     "prisma:migrate:dev": "npx prisma migrate dev",
-    "prisma:generate": "npx prisma generate"
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate:test": "dotenv -e .env.test -- prisma migrate deploy",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch --runInBand",
+    "test:coverage": "jest --coverage --runInBand",
+    "test:parallel": "jest"
   },
   "keywords": [],
   "author": "",
@@ -28,11 +33,17 @@
     "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
     "@types/express-session": "^1.18.2",
+    "@types/jest": "^30.0.0",
     "@types/node": "^25.0.9",
     "@types/nunjucks": "^3.2.6",
     "@types/pg": "^8.16.0",
+    "@types/supertest": "^7.2.0",
     "chokidar": "^3.6.0",
+    "dotenv-cli": "^11.0.0",
+    "jest": "^30.4.2",
     "prisma": "^6.19.2",
+    "supertest": "^7.2.2",
+    "ts-jest": "^29.4.11",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }

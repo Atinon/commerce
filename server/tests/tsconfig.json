@@ -1,0 +1,4 @@
+{
+    "_comment": "Helps VS Code recognize test files and use the test TypeScript config.",
+    "extends": "../tsconfig.test.json"
+}

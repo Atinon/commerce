@@ -12,5 +12,5 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
   },
-  "exclude": ["prisma.config.ts", "prisma"]
+  "exclude": ["prisma.config.ts", "prisma", "jest.config.ts", "tests"]
 }
