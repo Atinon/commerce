@@ -35,10 +35,17 @@ class NotFoundError extends BaseError {
   }
 }
 
+class ConflictError extends BaseError {
+  constructor(message: string) {
+    super(409, message);
+  }
+}
+
 export {
   BadRequestError,
   UnauthorizedError,
   NotFoundError,
   ForbiddenError,
   BaseError,
+  ConflictError,
 };

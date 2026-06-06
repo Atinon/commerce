@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { BaseError } from "../errors/errors.js";
+import { BadRequestError, BaseError } from "../errors/errors.js";
+import { ZodError } from "zod";
+import { translatePrismaError } from "../errors/prisma-error-handler.js";
 
 export function errorMiddleware(
   err: unknown,
@@ -7,6 +9,16 @@ export function errorMiddleware(
   res: Response,
   _next: NextFunction,
 ) {
+  // TODO: revisit Zod error handling
+  if (err instanceof ZodError) {
+    err = new BadRequestError(
+      err.issues.map((issue) => issue.message).join(","),
+    );
+  }
+
+  // TODO: revisit Prisma error handling, maybe move to service layer
+  err = translatePrismaError(err);
+
   if (err instanceof BaseError) {
     res.status(err.status).render("error", { err: err });
     return;
