@@ -6,8 +6,14 @@ export const ENV_PATH = {
   test: ".env.test",
 };
 
+export const NODE_ENVS = {
+  DEVELOPMENT: "development",
+  TEST: "test",
+  PRODUCTION: "production",
+};
+
 const envSchema = z.object({
-  NODE_ENV: z.enum(["development", "test", "production"]),
+  NODE_ENV: z.enum(Object.values(NODE_ENVS)),
   PORT: z.coerce.number().int().positive(),
   ASSETS_BASE_URL: z.string(),
   DATABASE_URL: z.url(),

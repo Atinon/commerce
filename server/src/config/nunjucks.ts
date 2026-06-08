@@ -1,13 +1,13 @@
 import nunjucks from "nunjucks";
 import path from "path";
 import type { Express } from "express";
-import type { Env } from "./env.js";
+import { NODE_ENVS, type Env } from "./env.js";
 import { CLIENT_ENTRIES } from "./client-entries.js";
 
 const viewsPath = path.join(process.cwd(), "src/views");
 
 export function configureNunjucks(app: Express, env: Env) {
-  const IS_DEV = env.NODE_ENV === "development";
+  const IS_DEV = env.NODE_ENV === NODE_ENVS.DEVELOPMENT;
 
   nunjucks
     .configure(viewsPath, {

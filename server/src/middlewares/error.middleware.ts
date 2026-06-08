@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { BadRequestError, BaseError } from "../errors/errors.js";
 import { ZodError } from "zod";
 import { translatePrismaError } from "../errors/prisma-error-handler.js";
+import { logger } from "../utils/logger/logger.js";
 
 export function errorMiddleware(
   err: unknown,
@@ -24,6 +25,6 @@ export function errorMiddleware(
     return;
   }
 
-  console.error(err);
+  logger.error("Unhandled application error", { err });
   res.status(500).render("500", { message: "Internal Server Error" });
 }

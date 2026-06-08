@@ -2,14 +2,18 @@ import express from "express";
 import {
   errorMiddleware,
   notFoundMiddleware,
+  requestLogger,
   sessionMiddleware,
 } from "./middlewares/index.js";
 import router from "./routes/index.js";
 import type { Env } from "./config/env.js";
 import { configureNunjucks, configurePrisma } from "./config/index.js";
+import { configureLogger } from "./utils/logger/logger.js";
 
 export function createApp(env: Env) {
   const app = express();
+
+  app.use(requestLogger);
 
   app.use(express.json());
 
@@ -30,6 +34,8 @@ export function createApp(env: Env) {
 }
 
 export default async function bootstrapApp(env: Env) {
+  configureLogger(env);
+
   const app = createApp(env);
 
   configureNunjucks(app, env);
