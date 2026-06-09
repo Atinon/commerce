@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "test": "node scripts/test.js",
+    "prod": "node scripts/prod.js",
+    "prisma:migrate:dev": "node scripts/prisma-migrate-dev.js",
+    "prisma:migrate:prod": "node scripts/prisma-migrate-prod.js",
+    "prisma:migrate:test": "node scripts/prisma-migrate-test.js"
+  }
+}

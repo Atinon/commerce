@@ -1,0 +1,36 @@
+services:
+  server:
+    build:
+      dockerfile: Dockerfile.prod
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  client:
+    build:
+      dockerfile: Dockerfile.prod
+    restart: unless-stopped
+    ports:
+      - "5174:5174"
+
+  postgres:
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    env_file:
+      - postgres.env.prod
+    volumes:
+      - pgdata_prod:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      interval: 2s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+volumes:
+  pgdata_prod:

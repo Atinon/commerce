@@ -1,0 +1,22 @@
+services:
+  server:
+    build:
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../server:/server
+      - server_node_modules:/server/node_modules
+
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../client:/client
+      - client_node_modules:/client/node_modules
+
+volumes:
+  server_node_modules:
+  client_node_modules:

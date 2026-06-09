@@ -15,10 +15,18 @@ export function configureNunjucks(app: Express, env: Env) {
       express: app,
       watch: IS_DEV, // uses Chokidar for file changes
     })
-    .addGlobal("asset", (path: string) => {
+    .addGlobal("asset", (entry: string) => {
       const cleanBase = env.ASSETS_BASE_URL.replace(/\/$/, "");
-      const cleanPath = path.replace(/^\//, "");
-      return `${cleanBase}/${cleanPath}`;
+
+      if (IS_DEV) {
+        const cleanEntry = entry.replace(/^\//, "");
+        return `${cleanBase}/${cleanEntry}`;
+      }
+
+      const prodEntryFileName = path
+        .basename(entry)
+        .replace(/\.(ts|tsx)$/, ".js");
+      return `${cleanBase}/assets/${prodEntryFileName}`;
     })
     .addGlobal("IS_DEV", IS_DEV)
     .addGlobal("CLIENT_ENTRIES", CLIENT_ENTRIES);
