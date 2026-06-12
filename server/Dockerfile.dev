@@ -1,7 +1,7 @@
 FROM node:24
 WORKDIR /server
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 COPY prisma ./prisma
 ENV DATABASE_URL="postgresql://placeholder@localhost:5432/placeholder" 
 RUN npx prisma generate

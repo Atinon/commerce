@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Run test migrations
+        run: npm run prisma:migrate:test
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Create dummy prod env file
+        run: |
+          cat > server/.env.prod <<EOF
+          NODE_ENV=production
+          PORT=3000
+          ASSETS_BASE_URL=http://localhost:5174
+          DATABASE_URL=postgresql://placeholder:placeholder@postgres:5432/placeholder
+          SESSION_SECRET=placeholder
+          EOF
+
+      - name: Build production images
+        run: npm run prod -- build
