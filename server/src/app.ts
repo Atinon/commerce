@@ -41,6 +41,8 @@ export default async function bootstrapApp(env: Env) {
   configureNunjucks(app, env);
   app.set("view engine", "njk");
 
+  app.set("trust proxy", 1);
+
   await configurePrisma(env);
 
   // set up static files
