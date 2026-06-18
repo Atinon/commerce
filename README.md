@@ -2,34 +2,52 @@
 
 This project is a work in progress.
 
-A reusable ecommerce app designed to demonstrate full-stack architecture, server-side rendering, and progressive client-side interactivity.
+A commerce platform built as a learning and portfolio project to demonstrate full-stack web application architecture, server-side rendering, progressive enhancement, and production-oriented development practices.
 
 ## Current state
 
 - Express server with SSR using Nunjucks
-- Initial React widgets
-- Local development setup with TypeScript(tsx) and Vite
+- Initial React client application powered by Vite
+- TypeScript across both server and client applications
 - PostgreSQL + Prisma ORM
-- User authentication
-- Session management with express-session
-- Initial Admin functionality
+- User authentication with session-based authorization
+- Role-based access control (User / Admin)
+- Product management and administrative functionality
+- Request validation with Zod
+- Integration testing with Jest and Supertest
+- Centralized error handling and structured request logging
+- Dockerized development and deployment environments
+- CI/CD workflows with GitHub Actions
+- Production-like deployment on Oracle Cloud VPS
+- Nginx reverse proxy with HTTPS (Let's Encrypt)
 
 ## Planned features
 
-- Product catalog with server-rendered pages
-- React-based product filters for dynamic listings without full page reload
-- Pagination and SEO-friendly URLs
-- API layer to expose data to client-side components
-- Shopping cart integrated as a React widget
-- Docker-based production setup
+- Expanded product catalog and storefront experience
+- React-powered interactive components integrated into server-rendered pages
+- Product filtering, sorting, pagination and SEO-friendly URLs
+- Shopping cart functionality
+- Order management workflows
+- Improved admin tooling and content management
+- Additional API endpoints for client-side features
 
 ## Purpose
 
 This project is being developed as a learning and portfolio piece to demonstrate:
+
 - Separation of server and client concerns
 - Progressive enhancement (SSR + React islands)
-- Production-oriented tooling
+- Authentication and authorization patterns
+- Scalable backend architecture
+- Production-oriented tooling and workflows
+- Testing, CI/CD, and deployment practices
 
 ## Status
 
-Early development / architectural phase.
+Active development.
+
+The core application architecture, authentication system, database layer, testing infrastructure, and deployment tooling are in place. Current development is focused on expanding commerce-specific functionality and refining the user and administrative experience.
+
+##
+
+Live link: https://commerce-app.duckdns.org
