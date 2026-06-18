@@ -8,6 +8,7 @@ const viewsPath = path.join(process.cwd(), "src/views");
 
 export function configureNunjucks(app: Express, env: Env) {
   const IS_DEV = env.NODE_ENV === NODE_ENVS.DEVELOPMENT;
+  const cleanBase = env.ASSETS_BASE_URL.replace(/\/$/, "");
 
   nunjucks
     .configure(viewsPath, {
@@ -16,8 +17,6 @@ export function configureNunjucks(app: Express, env: Env) {
       watch: IS_DEV, // uses Chokidar for file changes
     })
     .addGlobal("asset", (entry: string) => {
-      const cleanBase = env.ASSETS_BASE_URL.replace(/\/$/, "");
-
       if (IS_DEV) {
         const cleanEntry = entry.replace(/^\//, "");
         return `${cleanBase}/${cleanEntry}`;
@@ -29,5 +28,6 @@ export function configureNunjucks(app: Express, env: Env) {
       return `${cleanBase}/assets/${prodEntryFileName}`;
     })
     .addGlobal("IS_DEV", IS_DEV)
-    .addGlobal("CLIENT_ENTRIES", CLIENT_ENTRIES);
+    .addGlobal("CLIENT_ENTRIES", CLIENT_ENTRIES)
+    .addGlobal("favicon", `${cleanBase}/favicon.ico`);
 }
