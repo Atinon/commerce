@@ -1,8 +1,8 @@
 import bootstrapApp from "../../src/app.js";
-import { ENV_PATH, getEnv } from "../../src/config/index.js";
+import { getEnv } from "../../src/config/index.js";
 
 export async function createTestApp() {
-  const env = getEnv(ENV_PATH.test);
+  const env = getEnv();
 
   return bootstrapApp(env);
 }
