@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
 import {
-  getProductsService,
-  createProductService,
-  deleteProductService,
-  updateProductService,
-} from "../services/product.service.js";
-import {
   createProductSchema,
   productParamsSchema,
   updateProductSchema,
-} from "../schemas/product.schema.js";
-import { sanitizeProduct } from "../utils/product/generic.js";
+} from "#schemas/product.schema.js";
+import {
+  getProductsService,
+  createProductService,
+  updateProductService,
+  deleteProductService,
+} from "#services";
+import { sanitizeProduct } from "#utils/product/generic.js";
 
 const DEFAULT_COUNT = 10;
 const MAX_COUNT = 100;

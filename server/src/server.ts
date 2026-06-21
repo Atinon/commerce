@@ -1,7 +1,7 @@
-import bootstrapApp from "./app.js";
-import { getEnv } from "./config/index.js";
 import { ZodError } from "zod";
-import { logger } from "./utils/logger/logger.js";
+import { getEnv } from "#config";
+import { logger } from "#utils/logger/logger.js";
+import bootstrapApp from "./app.js";
 
 async function startServer() {
   try {

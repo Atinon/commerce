@@ -1,11 +1,11 @@
 import { createTestApp } from "../helpers/app.js";
 import type { Express } from "express";
 import request from "supertest";
-import { prisma } from "../../src/config/index.js";
 import { makeRegisterData } from "../helpers/user.js";
 import { clearUsers, disconnectDatabase } from "../helpers/database.js";
-import { comparePassword } from "../../src/utils/auth/password.js";
 import { REGISTER_URL } from "../helpers/routes.js";
+import { prisma } from "#config";
+import { comparePassword } from "#utils/auth/password.js";
 
 let app: Express;
 
@@ -44,7 +44,7 @@ describe(`POST ${REGISTER_URL}`, () => {
 
   it("rejects duplicate email", async () => {
     const registerData = makeRegisterData();
-    
+
     await request(app).post(REGISTER_URL).send(registerData);
 
     const response = await request(app).post(REGISTER_URL).send(registerData);

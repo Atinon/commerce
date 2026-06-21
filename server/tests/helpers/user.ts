@@ -1,6 +1,6 @@
-import { prisma } from "../../src/config/index.js";
-import type { RegisterUserInput } from "../../src/schemas/auth.schema.js";
-import { hashPassword } from "../../src/utils/auth/password.js";
+import { prisma } from "#config";
+import { RegisterUserInput } from "#schemas/auth.schema.js";
+import { hashPassword } from "#utils/auth/password.js";
 
 export function makeRegisterData(
   overrides: Partial<RegisterUserInput> = {},

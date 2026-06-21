@@ -1,13 +1,8 @@
+import { loginUserSchema, registerUserSchema } from "#schemas/auth.schema.js";
+import { loginUserService, registerUserService } from "#services";
+import { sanitizeUser } from "#utils/auth/generic.js";
 import { Request, Response } from "express";
-import {
-  loginUserSchema,
-  registerUserSchema,
-} from "../schemas/auth.schema.js";
-import {
-  loginUserService,
-  registerUserService,
-} from "../services/auth.service.js";
-import { sanitizeUser } from "../utils/auth/generic.js";
+
 
 export async function registerUser(req: Request, res: Response) {
   const data = registerUserSchema.parse(req.body);

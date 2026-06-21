@@ -1,10 +1,10 @@
-import { prisma } from "../config/index.js";
+import { prisma } from "#config";
 import {
   CreateProductInput,
   ProductParamsSchema,
   UpdateProductInput,
-} from "../schemas/product.schema.js";
-import { assertActiveProduct } from "../utils/product/generic.js";
+} from "#schemas/product.schema.js";
+import { assertActiveProduct } from "#utils/product/generic.js";
 
 interface GetProductsOptions {
   count: number;

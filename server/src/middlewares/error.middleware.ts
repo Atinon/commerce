@@ -1,15 +1,19 @@
 import { Request, Response, NextFunction } from "express";
-import { BadRequestError, BaseError } from "../errors/errors.js";
 import { ZodError } from "zod";
-import { translatePrismaError } from "../errors/prisma-error-handler.js";
-import { logger } from "../utils/logger/logger.js";
+import { BadRequestError, BaseError } from "#errors/errors.js";
+import { translatePrismaError } from "#errors/prisma-error-handler.js";
+import { logger } from "#utils/logger/logger.js";
+
+const INTERNAL_ERROR_MSG = "Internal Server Error";
 
 export function errorMiddleware(
   err: unknown,
-  _req: Request,
+  req: Request,
   res: Response,
   _next: NextFunction,
 ) {
+  const isApiRequest = req.originalUrl.startsWith("/api");
+
   // TODO: revisit Zod error handling
   if (err instanceof ZodError) {
     err = new BadRequestError(
@@ -21,10 +25,24 @@ export function errorMiddleware(
   err = translatePrismaError(err);
 
   if (err instanceof BaseError) {
-    res.status(err.status).render("error", { err: err });
-    return;
+    if (isApiRequest) {
+      return res.status(err.status).json({
+        err: {
+          message: err.message,
+        },
+      });
+    }
+
+    return res.status(err.status).render("error", { err });
   }
 
   logger.error("Unhandled application error", { err });
-  res.status(500).render("500", { message: "Internal Server Error" });
+  if (isApiRequest) {
+    return res.status(500).json({
+      err: {
+        message: INTERNAL_ERROR_MSG,
+      },
+    });
+  }
+  return res.status(500).render("500", { message: INTERNAL_ERROR_MSG });
 }

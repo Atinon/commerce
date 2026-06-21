@@ -1,4 +1,4 @@
-export const REGISTER_URL = "/auth/register";
-export const LOGIN_URL = "/auth/login";
-export const LOGOUT_URL = "/auth/logout";
-export const ACCOUNT_URL = "/account/";
+export const REGISTER_URL = "/api/auth/register";
+export const LOGIN_URL = "/api/auth/login";
+export const LOGOUT_URL = "/api/auth/logout";
+export const ACCOUNT_URL = "/api/account/";

@@ -1,4 +1,4 @@
-import { prisma } from "../config/index.js";
+import { prisma } from "#config";
 
 interface GetOrdersOptions {
   count: number;

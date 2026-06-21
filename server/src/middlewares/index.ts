@@ -3,3 +3,4 @@ export * from "./not-found.middleware.js";
 export * from "./session.middleware.js";
 export * from "./auth.middleware.js";
 export * from "./request-logger.middleware.js";
+export * from "./admin.middleware.js";

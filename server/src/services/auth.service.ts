@@ -1,16 +1,16 @@
-import { prisma } from "../config/index.js";
-import { UnauthorizedError } from "../errors/errors.js";
+import { prisma } from "#config";
+import { UnauthorizedError } from "#errors/errors.js";
 import {
-  type RegisterUserInput,
-  type LoginUserInput,
-  type UserRole,
+  RegisterUserInput,
+  UserRole,
   USER_ROLES,
-} from "../schemas/auth.schema.js";
+  LoginUserInput,
+} from "#schemas/auth.schema.js";
 import {
   hashPassword,
-  comparePassword,
   fallbackHash,
-} from "../utils/auth/password.js";
+  comparePassword,
+} from "#utils/auth/password.js";
 import { getSingleUserService } from "./user.service.js";
 
 export async function registerUserService(

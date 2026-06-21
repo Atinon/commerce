@@ -1,15 +1,15 @@
-import { prisma } from "../config/index.js";
+import { prisma } from "#config";
 import {
-  BadRequestError,
   NotFoundError,
   UnauthorizedError,
-} from "../errors/errors.js";
+  BadRequestError,
+} from "#errors/errors.js";
 import {
-  ChangeAccountPasswordSchema,
-  EditUserSchema,
   UserParamsSchema,
-} from "../schemas/user.schema.js";
-import { comparePassword, hashPassword } from "../utils/auth/password.js";
+  EditUserSchema,
+  ChangeAccountPasswordSchema,
+} from "#schemas/user.schema.js";
+import { comparePassword, hashPassword } from "#utils/auth/password.js";
 
 type GetUsersOptions = {
   count: number;

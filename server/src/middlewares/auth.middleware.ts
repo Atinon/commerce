@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { assertLoggedIn, assertLoggedOut } from "../utils/auth/generic.js";
+import { assertLoggedOut, assertLoggedIn } from "#utils/auth/generic.js";
 
 export function requireLoggedOut(
   req: Request,

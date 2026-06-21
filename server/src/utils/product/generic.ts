@@ -1,7 +1,7 @@
+import { prisma } from "#config";
+import { NotFoundError } from "#errors/errors.js";
+import { ProductParamsSchema } from "#schemas/product.schema.js";
 import { Product } from "@prisma/client";
-import { prisma } from "../../config/prisma.js";
-import { NotFoundError } from "../../errors/errors.js";
-import { ProductParamsSchema } from "../../schemas/product.schema.js";
 
 export async function assertActiveProduct(params: ProductParamsSchema) {
   const product = await prisma.product.findUnique({

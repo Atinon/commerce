@@ -1,6 +1,6 @@
 import { Request } from "express";
-import { UnauthorizedError, BadRequestError } from "../../errors/errors.js";
 import type { User } from "@prisma/client";
+import { UnauthorizedError, BadRequestError } from "#errors/errors.js";
 
 export function assertLoggedIn(req: Request) {
   if (!req.session.userId) {

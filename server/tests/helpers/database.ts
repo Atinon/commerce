@@ -1,4 +1,4 @@
-import { prisma } from "../../src/config/index.js";
+import { prisma } from "#config";
 
 export async function clearUsers() {
   return prisma.user.deleteMany();

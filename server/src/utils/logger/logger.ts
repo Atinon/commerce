@@ -1,4 +1,4 @@
-import { Env, NODE_ENVS } from "../../config/env.js";
+import { Env, NODE_ENVS } from "#config";
 
 const LOG_LEVEL = {
   INFO: "INFO",

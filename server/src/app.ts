@@ -1,14 +1,13 @@
 import express from "express";
+import { Env, configureNunjucks, configurePrisma } from "#config";
 import {
-  errorMiddleware,
-  notFoundMiddleware,
   requestLogger,
   sessionMiddleware,
-} from "./middlewares/index.js";
-import router from "./routes/index.js";
-import type { Env } from "./config/env.js";
-import { configureNunjucks, configurePrisma } from "./config/index.js";
-import { configureLogger } from "./utils/logger/logger.js";
+  notFoundMiddleware,
+  errorMiddleware,
+} from "#middlewares";
+import router from "#routes";
+import { configureLogger } from "#utils/logger/logger.js";
 
 export function createApp(env: Env) {
   const app = express();

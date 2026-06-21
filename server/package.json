@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx tsx watch src/server.ts",
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "start": "node dist/server.js",
     "prisma:make-migrations": "npx prisma migrate dev --create-only",
     "prisma:migrate:dev": "npx prisma migrate dev",
@@ -45,6 +45,7 @@
     "prisma": "^6.19.2",
     "supertest": "^7.2.2",
     "ts-jest": "^29.4.11",
+    "tsc-alias": "^1.8.17",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }

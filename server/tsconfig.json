@@ -7,10 +7,21 @@
     "outDir": "dist",
     "rootDir": "src",
 
-     // Type safety
+    // Type safety
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
+
+    "paths": {
+      "#config": ["./src/config/index.js"],
+      "#controllers": ["./src/controllers/index.js"],
+      "#errors/*": ["./src/errors/*"],
+      "#middlewares": ["./src/middlewares/index.js"],
+      "#routes": ["./src/routes/index.js"],
+      "#schemas/*": ["./src/schemas/*"],
+      "#services": ["./src/services/index.js"],
+      "#utils/*": ["./src/utils/*"]
+    }
   },
   "exclude": ["prisma.config.ts", "prisma", "jest.config.ts", "tests"]
 }

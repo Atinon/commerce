@@ -1,18 +1,18 @@
 import { Request, Response } from "express";
-import { registerUserSchema, USER_ROLES } from "../schemas/auth.schema.js";
-import { registerUserService } from "../services/auth.service.js";
-import { sanitizeUser } from "../utils/auth/generic.js";
+import { registerUserSchema, USER_ROLES } from "#schemas/auth.schema.js";
 import {
-  changeAccountPasswordSchema,
-  editUserSchema,
   userParamsSchema,
-} from "../schemas/user.schema.js";
+  editUserSchema,
+  changeAccountPasswordSchema,
+} from "#schemas/user.schema.js";
 import {
-  changeAccountPasswordService,
+  registerUserService,
   deleteUserService,
-  editUserService,
   getSingleUserService,
-} from "../services/user.service.js";
+  editUserService,
+  changeAccountPasswordService,
+} from "#services";
+import { sanitizeUser } from "#utils/auth/generic.js";
 
 export async function createAdminUser(req: Request, res: Response) {
   const data = registerUserSchema.parse(req.body);
@@ -44,5 +44,5 @@ export async function editAccount(req: Request, res: Response) {
 export async function changeAccountPassword(req: Request, res: Response) {
   const data = changeAccountPasswordSchema.parse(req.body);
   await changeAccountPasswordService({ id: req.session.userId! }, data);
-  res.status(200).send();
+  res.status(204).send();
 }
