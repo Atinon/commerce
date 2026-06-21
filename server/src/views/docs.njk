@@ -1,0 +1,56 @@
+{% extends "base.njk" %}
+
+{% block content %}
+
+<h1>API Overview</h1>
+
+<p>
+    Session-based authentication with role-based access control.
+    Protected endpoints require a valid authenticated session.
+</p>
+
+<section>
+    <h2>Authentication</h2>
+
+    <ul>
+        <li><code>POST</code> /api/auth/register</li>
+        <li><code>POST</code> /api/auth/login</li>
+        <li><code>POST</code> /api/auth/logout</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Account</h2>
+
+    <ul>
+        <li><code>GET</code> /api/account</li>
+        <li><code>PATCH</code> /api/account</li>
+        <li><code>PATCH</code> /api/account/password</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Products</h2>
+
+    <ul>
+        <li><code>GET</code> /api/products</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Administration</h2>
+
+    <ul>
+        <li><code>POST</code> /api/admin/create</li>
+        <li><code>POST</code> /api/admin/products</li>
+        <li><code>PATCH</code> /api/admin/products/:id</li>
+        <li><code>DELETE</code> /api/admin/products/:id</li>
+        <li><code>DELETE</code> /api/admin/users/:id</li>
+    </ul>
+</section>
+
+<p>
+    <a href="/">← Back to Project Overview</a>
+</p>
+
+{% endblock %}

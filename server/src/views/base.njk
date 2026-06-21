@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Commerce-App</title>
   <link rel="icon" href="{{ favicon }}">
+  <link rel="stylesheet" href="{{ styles }}">
   {% if IS_DEV %}
     {# React Preamble for HMR #}
     <script type="module">
@@ -19,16 +20,22 @@
 </head>
 <body>
   <header>
-    <h5>Commerce-App</h5>
+    <nav>
+      <a href="/">Overview</a>
+      <a href="/docs">API Docs</a>
+    </nav>
   </header>
 
   <main>
-    {% block content %}{% endblock %} 
+    {% block content %}{% endblock %}
   </main>
 
-  <footer></footer>
+  <footer>
+    Built by Nikola Andonov as a portfolio project (wip) ·
+    <a href="https://github.com/Atinon">GitHub</a>
+  </footer>
 
-  {%block scripts%}
-  {%endblock%}
+  {% block scripts %}
+  {% endblock %}
 </body>
 </html>

@@ -3,6 +3,6 @@ import rootRouter from "./root.js";
 
 const webRouter = Router();
 
-webRouter.get("/", rootRouter);
+webRouter.use("/", rootRouter);
 
 export default webRouter;

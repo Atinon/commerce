@@ -1,15 +1,192 @@
-{%extends "base.njk"%}
+{% extends "base.njk" %}
 
-{%block content%}
-<div>
-    <i> {{ message }} </i>
-</div>
+{% block content %}
 
-<div id="greet-island">
+<h1>Commerce Platform</h1>
 
-</div>
-{%endblock%}
+<p>
+    Production-oriented commerce application demonstrating
+    server-side rendering, progressive enhancement,
+    authentication, authorization, automated testing,
+    and cloud deployment.
+</p>
 
-{%block scripts%}
-<script type="module" src="{{ asset(CLIENT_ENTRIES.greetIsland) }}"></script>
-{%endblock%}
+<p>
+    Built with TypeScript, Express, PostgreSQL, Prisma,
+    React Islands, Docker, Nginx, and GitHub Actions.
+</p>
+
+<section>
+    <h2>Resources</h2>
+
+    <ul>
+        <li>
+            <a href="https://github.com/Atinon/commerce">
+                Source Code
+            </a>
+        </li>
+
+        <li>
+            <a href="/docs">
+                API Documentation
+            </a>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Architecture Overview</h2>
+
+    <p>
+        The application uses server-side rendering as the
+        primary delivery model. React is introduced only
+        where interactivity is required, allowing pages
+        to remain fast, SEO-friendly, and progressively
+        enhanced.
+    </p>
+
+<pre>
+Browser
+   │
+Nginx Reverse Proxy
+   │
+Express Application
+   │
+   ├── SSR Pages (Nunjucks)
+   ├── API Routes
+   ├── React Islands
+   │
+Middleware Pipeline
+   │
+   ├── Request Logging
+   ├── Session Authentication
+   ├── Role-Based Access Control
+   ├── Error Handling
+   │
+Router
+   │
+   ├── Route Definitions
+   ├── Controller Dispatch
+   │
+Controller
+   │
+   ├── Request / Response Handling
+   ├── Input Processing
+   ├── Service Coordination
+   │
+Service Layer
+   │
+   ├── Business Logic
+   │
+Prisma ORM
+   │
+   ├── Data Access & Database Mapping
+   ├── Query Construction
+   │
+PostgreSQL
+</pre>
+
+</section>
+
+<section>
+    <h2>Production Infrastructure</h2>
+
+    <ul>
+        <li>Oracle Cloud VPS deployment</li>
+        <li>Nginx reverse proxy</li>
+        <li>HTTPS with Let's Encrypt</li>
+        <li>Dockerized application services</li>
+        <li>GitHub Actions CI/CD workflows</li>
+        <li>Structured request logging</li>
+        <li>Environment-based configuration management</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Core Capabilities</h2>
+
+    <h3>Authentication & Authorization</h3>
+
+    <p>
+        Session-based authentication with role-based access
+        control supporting both user and administrative
+        workflows.
+    </p>
+
+    <h3>Data Layer</h3>
+
+    <p>
+        PostgreSQL with Prisma ORM, schema migrations,
+        validation using Zod, and centralized error
+        handling.
+    </p>
+
+    <h3>Testing</h3>
+
+    <p>
+        Automated integration testing with Jest and
+        Supertest covering application behavior and API
+        endpoints, running in an isolated containerized enviornment.
+    </p>
+
+    <h3>Progressive Enhancement</h3>
+
+    <p>
+        Pages are rendered on the server and selectively
+        enhanced with React islands where richer
+        interactivity is beneficial.
+    </p>
+</section>
+
+<section>
+    <h2>Project Goals</h2>
+
+    <p>
+        This project serves as a portfolio and learning
+        exercise focused on building production-oriented
+        web applications.
+    </p>
+
+    <p>
+        The present emphasis is on architecture, maintainability,
+        deployment, testing, and long-term scalability.
+    </p>
+</section>
+
+<section>
+    <h2>Current Status</h2>
+
+    <p>
+        Active development.
+    </p>
+
+    <p>
+        The core architecture, authentication system,
+        authorization model, database layer, deployment
+        pipeline, and testing infrastructure are complete.
+    </p>
+
+    <p>
+        Current work focuses on expanding commerce-specific
+        functionality including storefront experiences,
+        shopping carts, order workflows, and additional
+        administrative tooling.
+    </p>
+</section>
+
+<section>
+    <h2>React Island Demonstration</h2>
+
+    <div class="demo-card">
+        <div id="greet-island"></div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script
+    type="module"
+    src="{{ asset(CLIENT_ENTRIES.greetIsland) }}"
+></script>
+{% endblock %}

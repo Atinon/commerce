@@ -29,5 +29,6 @@ export function configureNunjucks(app: Express, env: Env) {
     })
     .addGlobal("IS_DEV", IS_DEV)
     .addGlobal("CLIENT_ENTRIES", CLIENT_ENTRIES)
-    .addGlobal("favicon", `${cleanBase}/favicon.ico`);
+    .addGlobal("favicon", `${cleanBase}/favicon.ico`)
+    .addGlobal("styles", `${cleanBase}/styles.css`);
 }
